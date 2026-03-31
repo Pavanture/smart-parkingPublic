@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-// import { motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { Search, MapPin } from "lucide-react";
 import { useState } from "react";
 
@@ -60,11 +60,6 @@ function Dashboard() {
     <div className="flex min-h-screen bg-gradient-to-br from-indigo-100 via-white to-blue-200">
       <div className="w-64 bg-gradient-to-b from-indigo-900 to-blue-800 text-white p-6 shadow-2xl relative">
         <div className="flex items-center gap-3 mb-10">
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/744/744465.png"
-            alt="Smart Parking Logo"
-            className="w-10 h-10"
-          />
           <h1 className="text-xl font-bold">Smart Parking</h1>
         </div>
 
@@ -91,11 +86,16 @@ function Dashboard() {
         </nav>
 
         <div className="absolute bottom-10 w-52">
-          <Link to="/login">
-            <button className="w-full bg-red-500 hover:bg-red-600 p-2 rounded-lg transition">
-              Logout
-            </button>
-          </Link>
+          <button
+            onClick={() => {
+              localStorage.removeItem("isLoggedIn");
+              localStorage.removeItem("user");
+              navigate("/login");
+            }}
+            className="w-full bg-red-500 hover:bg-red-600 p-2 rounded-lg transition"
+          >
+            Logout
+          </button>
         </div>
       </div>
 
@@ -105,7 +105,7 @@ function Dashboard() {
           animate={{ opacity: 1, y: 0 }}
           className="text-4xl font-bold mb-8 text-gray-800"
         >
-          Find Nearby Parking 🚗
+          Find Nearby Parking
         </motion.h2>
 
         <div className="bg-white shadow-xl rounded-2xl p-5 mb-10 flex items-center gap-4">

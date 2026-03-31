@@ -80,47 +80,16 @@ function Booking() {
       return;
     }
 
-    setLoading(true);
-
-    try {
-      const vehicleType = parkingType === "electric" ? "Electric" : "Normal";
-
-      const bookingData = {
-        user_id: user.id,
-        location: spotName,
-        slot: selectedSlots[0],
-        vehicle_type: vehicleType,
-        vehicle_number: "MH12AB1234",
-        phone: "9999999999",
-        hours: hours,
-        amount: hourlyRate * hours,
-        payment_mode: "Online",
-      };
-
-      const res = await fetch(`${BASE_URL}/book`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(bookingData),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        alert(data.message || "Booking failed");
-        setLoading(false);
-        return;
-      }
-
-      alert("Booking successful ✅");
-      navigate("/dashboard");
-    } catch (error) {
-      console.log("Booking error:", error);
-      alert("Server error");
-    } finally {
-      setLoading(false);
-    }
+    // Send user to payment page first, and payment page will complete booking.
+    navigate("/payment", {
+      state: {
+        spotName,
+        parkingType,
+        selectedSlots,
+        hours,
+        hourlyRate,
+      },
+    });
   };
 
   return (

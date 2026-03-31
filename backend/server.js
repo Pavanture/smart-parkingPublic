@@ -6,7 +6,13 @@ const db = require("./db");
 
 const app = express();
 
-app.use(cors());
+const allowedOrigin = process.env.ALLOWED_ORIGIN || "*";
+app.use(
+  cors({
+    origin: allowedOrigin,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  })
+);
 app.use(express.json());
 app.get("/", (req, res) => {
   res.send("Smart Parking backend is running");
@@ -26,11 +32,11 @@ db.connect((err) => {
 /* ---------------- SIGNUP ---------------- */
 
 app.post("/signup", (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, phone } = req.body;
 
-  const sql = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
+  const sql = "INSERT INTO users (name, email, password, phone) VALUES (?, ?, ?, ?)";
 
-  db.query(sql, [name, email, password], (err, result) => {
+  db.query(sql, [name, email, password, phone], (err, result) => {
     if (err) {
       console.log(err);
       return res.status(500).json({ message: "Database Error" });
@@ -68,6 +74,7 @@ app.post("/login", (req, res) => {
         id: user.id,
         name: user.name,
         email: user.email,
+        phone: user.phone || "",
       },
     });
   });

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Profile() {
   const storedUser = JSON.parse(localStorage.getItem("user")) || {};
@@ -41,6 +42,8 @@ function Profile() {
     setFormData(user);
     setEditMode(false);
   };
+
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-100 via-white to-indigo-200 flex items-center justify-center">
@@ -139,6 +142,13 @@ function Profile() {
               Edit Profile
             </button>
           )}
+
+          <button
+            onClick={() => navigate("/dashboard")}
+            className="w-full mt-3 bg-gray-300 text-gray-800 py-2 rounded-lg hover:bg-gray-400 transition"
+          >
+            Back to Dashboard
+          </button>
         </div>
       </div>
     </div>

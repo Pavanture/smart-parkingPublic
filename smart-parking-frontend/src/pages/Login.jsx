@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { BASE_URL } from "../config";
 
 function Login() {
@@ -33,6 +34,7 @@ function Login() {
       }
 
       localStorage.setItem("user", JSON.stringify(data.user));
+      localStorage.setItem("isLoggedIn", "true");
       alert("Login successful");
       navigate("/dashboard");
     } catch (error) {
@@ -43,8 +45,11 @@ function Login() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-200 via-white to-blue-300">
-      <div className="bg-white p-10 rounded-2xl shadow-2xl w-96">
-
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="bg-white p-10 rounded-2xl shadow-2xl w-96"
+      >
         <h2 className="text-3xl font-bold mb-6 text-center text-indigo-700">
           Smart Parking Login
         </h2>

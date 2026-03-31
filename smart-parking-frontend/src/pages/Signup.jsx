@@ -10,6 +10,7 @@ function Signup() {
     name: "",
     email: "",
     password: "",
+    phone: "",
   });
 
   const [loading, setLoading] = useState(false);
@@ -25,7 +26,12 @@ function Signup() {
   const handleSignup = async (e) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.email || !formData.password) {
+    if (
+      !formData.name ||
+      !formData.email ||
+      !formData.password ||
+      !formData.phone
+    ) {
       setMessage("All fields are required");
       return;
     }
@@ -81,6 +87,15 @@ function Signup() {
             style={styles.input}
           />
 
+          <input
+            type="text"
+            name="phone"
+            placeholder="Phone Number"
+            value={formData.phone}
+            onChange={handleChange}
+            style={styles.input}
+          />
+
           <button type="submit" style={styles.button} disabled={loading}>
             {loading ? "Creating Account..." : "Sign Up"}
           </button>
@@ -98,7 +113,6 @@ function Signup() {
           </Link>
         </p>
       </div>
-      <h1>Smart Parking 🚀</h1>;
     </div>
   );
 }
