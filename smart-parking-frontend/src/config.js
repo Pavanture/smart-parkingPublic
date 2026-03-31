@@ -1,0 +1,1 @@
+export const BASE_URL = "https://smart-parking-e8e4.onrender.com";
