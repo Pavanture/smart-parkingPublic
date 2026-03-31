@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 // import { motion } from "framer-motion";
 import { BASE_URL } from "../config";
-
+<h1>Smart Parking 🚀</h1>;
 function Login() {
   const navigate = useNavigate();
 
