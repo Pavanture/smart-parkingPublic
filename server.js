@@ -6,7 +6,9 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-
+app.get("/", (req, res) => {
+  res.send("Smart Parking backend is running");
+});
 console.log("MYSQL PROJECT STARTED");
 
 /* ---------------- DATABASE CONNECTION ---------------- */
