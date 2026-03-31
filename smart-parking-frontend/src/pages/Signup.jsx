@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../config";
-<h1>Smart Parking 🚀</h1>;
+
 function Signup() {
   const navigate = useNavigate();
 
@@ -98,6 +98,7 @@ function Signup() {
           </Link>
         </p>
       </div>
+      <h1>Smart Parking 🚀</h1>;
     </div>
   );
 }
