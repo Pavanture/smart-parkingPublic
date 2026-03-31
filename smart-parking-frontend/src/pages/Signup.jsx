@@ -39,9 +39,8 @@ function Signup() {
       setMessage(res.data.message || "Signup successful");
       setFormData({ name: "", email: "", password: "" });
 
-      setTimeout(() => {
-        navigate("/login");
-      }, 1000);
+      alert("Signup successful");
+      navigate("/login");
     } catch (err) {
       setMessage(err.response?.data?.message || "Signup failed");
     } finally {
